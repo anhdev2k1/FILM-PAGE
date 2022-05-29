@@ -14,9 +14,6 @@ function signIn(e){
         password : password,
         email : email
     }
-    if(username == "" && password == "" && email == ""){
-        toastr.error("Vui lòng nhập đủ thông tin")
-    }
     let setUser = localStorage.setItem(username,JSON.stringify(user));
     alert("Đăng kí thành công")
 }
