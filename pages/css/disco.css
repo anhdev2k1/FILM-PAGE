@@ -82,7 +82,26 @@ img{
     color: var(--color-active);
     border-right: 4px solid var(--color-active);
 }
-
+.user{
+    width: max-content;
+    height: max-content;
+    padding: 10px 15px;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+.user .name__user{
+    margin-left: 10px;
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+.user > i{
+    font-size: 1.8rem;
+}
 
 /*----------------MAIN---------------------*/
 .main{
