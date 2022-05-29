@@ -11,7 +11,7 @@ async function getFilm(api){
         return`
             <div class="post__item">
                 <div class="img-post">
-                    <img src="../images/post.jpg" alt="">
+                    <img src="./access/images/post.jpg" alt="">
                 </div>
                 <div class="title">
                     <h3 class="title-heading">${item.name}</h3>
