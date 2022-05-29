@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in</title>
+    <link rel="stylesheet" href="./css/sign-in.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+</head>
+<body>
+    <div class="container" style="background: url(../images/background.png);">
+        <form class="form__container">
+            <h2 class="heading__form">Đăng kí</h2>
+            <div class="form__item">
+                <label for="username" >Nhập tài khoản :</label>
+                <input id="username" type="text" class="username" placeholder="username..." required>
+            </div>
+
+            <div class="form__item">
+                <label for="password">Nhập password :</label>
+                <input id="password" type="password"class="password"placeholder="password..." required>
+            </div>
+            
+            <div class="form__item">
+                <label for="email">Nhập email :</label>
+                <input id="email" type="text" class="email" placeholder="email..." required>
+            </div>
+            <a href="./login.html" class="btn__signin" onclick="signIn()">Tạo tài khoản</a>
+            <a href="./login.html" class="login">Login ?</a>
+        </form>
+    </div>
+    <script src="./js/signin.js"></script>
+</body>
+</html>

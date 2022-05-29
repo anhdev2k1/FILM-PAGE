@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore</title>
+    <link rel="stylesheet" href="./css/explore.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <a href="/index.html" class="logo">Movie Film</a>
+            <div class="search">
+                <input type="text" class="input__search" placeholder="Search movie...">
+                <i class="fa-solid fa-magnifying-glass btn__search"></i>
+            </div>
+        </div>
+
+
+        <div class="content">
+            
+            <div class="list__category--btn">
+                <div class="btn-category active" data="phimbo">Phim bộ</div>
+                <div class="btn-category" data="phimle">Phim lẻ</div>
+                <div class="btn-category" data="phimchieurap">Phim chiếu rạp</div>
+                <div class="btn-category" data="phimhoathinh">Phim hoạt hình</div>
+            </div>
+            
+            <select class="list__category" onchange="categoryChanged(this)">
+                <option class="category__item" value="phim">All Category</option>
+                <option class="category__item" value="Phim tình cảm">Phim tình cảm</option>
+                <option class="category__item" value="Phim hành động">Phim hành động</option>
+                <option class="category__item" value="Phim cổ trang">Phim cổ trang</option>
+                <option class="category__item" value="Phim phiêu lưu">Phim phiêu lưu</option>
+                <option class="category__item" value="Phim kinh dị">Phim kinh dị</option>
+                <option class="category__item" value="Phim hoạt hình">Phim hoạt hình</option>
+            </select>
+
+            <div class="list__product">
+                
+            </div>
+        </div>
+    </div>
+    <script src="./js/explore.js"></script>
+    <script src="../src/js/main.js"></script>
+</body>
+</html>

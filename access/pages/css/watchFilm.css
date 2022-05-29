@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;700&family=Poppins:wght@300;400;500;700&family=Roboto:wght@100;300;400;500;700&family=Ubuntu:wght@300;400;500;700&display=swap');
+
+:root{
+    --color-main : #191A1F;
+    --color-border : 1px solid rgba(255, 255, 255, 0.559);
+    --color-active : #0D90F3
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    font-size: 62.5%;
+    font-family: 'Barlow', sans-serif;
+    line-height: 25.6px;
+}
+a{
+    display: block;
+    text-decoration: none;
+    color: unset;
+}
+ul{
+    list-style: none;
+}
+img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.container-video{
+    width: 100%;
+    min-height: 800px;
+    background-color: var(--color-main);
+    
+}
+
+.navbar{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    /* position: fixed; */
+}
+.navbar .logo{
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.search{
+    width: 280px;
+    height: 40px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    border: 1px solid ;
+    border: var(--color-border);
+    justify-content: space-between;
+}
+.input__search{
+    border: none;
+    outline: none;
+    height: 100%;
+    background: none;
+    text-indent: 20px;
+    color: white;
+    font-size: 1.5rem;
+}
+.btn__search{
+    margin-right: 20px;
+    font-size: 1.7rem;
+    cursor: pointer;
+    color: white;
+}
+.container-video .video{
+    overflow: hidden;
+    padding-top: 50px;
+    margin: 0 auto;
+    display: block;
+}
+.container-video > h1{
+    color: white;
+    font-size: 3rem;
+    text-align: center;
+    padding-top: 100px;
+}
+.title__video{
+    width: 1200px;
+    color: white;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+.title__video .name__video{
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+.title__video .category__video{
+    font-size: 1.4rem;
+    padding: 10px 15px;
+    background-color: #27282E;
+    width: max-content;
+    border-radius: 30px;
+    font-weight: 500;
+}
+.title__video .episode__video{
+    font-size: 1.8rem;
+    padding: 20px 0;
+    font-weight: 500;
+}
+
+.list__episode{
+    width: 1200px;
+    height: max-content;
+    border: 2px solid rgba(255, 255, 255, 0.492);
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+.list__episode .episode__link{
+    display: block;
+    padding: 10px 20px;
+    background-color: #27282E;
+    height: max-content;
+    font-size: 1.5rem;
+    font-weight: 500;
+    transition: .3s;
+    border-radius: 15px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+.list__episode .episode__link:hover{
+    background-color: #5e606c;
+    transition: .3s;
+}
+.list__episode .episode__link.active{
+    background-color: var(--color-active);
+}
+.comment{
+    width: max-content;
+    min-height: 200px;
+    background-color: white;
+    margin-top: 50px;
+    padding: 20px;
+}
