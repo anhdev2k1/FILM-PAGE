@@ -23,21 +23,24 @@
         <div class="content">
             
             <div class="list__category--btn">
-                <div class="btn-category active" data="phimbo">Phim bộ</div>
+                <div  class="btn-category active" data="phimbo">Phim bộ</div>
                 <div class="btn-category" data="phimle">Phim lẻ</div>
-                <div class="btn-category" data="phimchieurap">Phim chiếu rạp</div>
-                <div class="btn-category" data="phimhoathinh">Phim hoạt hình</div>
+                <div  class="btn-category" data="phimchieurap">Phim chiếu rạp</div>
+                <div  class="btn-category" data="phimhoathinh">Phim hoạt hình</div>
             </div>
             
-            <select class="list__category" onchange="categoryChanged(this)">
-                <option class="category__item" value="phim">All Category</option>
-                <option class="category__item" value="Phim tình cảm">Phim tình cảm</option>
-                <option class="category__item" value="Phim hành động">Phim hành động</option>
-                <option class="category__item" value="Phim cổ trang">Phim cổ trang</option>
-                <option class="category__item" value="Phim phiêu lưu">Phim phiêu lưu</option>
-                <option class="category__item" value="Phim kinh dị">Phim kinh dị</option>
-                <option class="category__item" value="Phim hoạt hình">Phim hoạt hình</option>
-            </select>
+            <div class="list__filter">
+                <span>Category</span>
+                <i class="fa-solid fa-angle-right"></i>
+
+                <div class="list__filter-category">
+                    <div class="filter__category-item" category = "all">Tất cả</div>
+                    <div class="filter__category-item" category = "Phim tình cảm">Phim tình cảm</div>
+                    <div class="filter__category-item" category = "Phim hành động">Phim hành động</div>
+                    <div class="filter__category-item" category = "Phim hoạt hình">Phim hoạt hình</div>
+                    <div class="filter__category-item" category = "Phim cổ trang">Phim cổ trang</div>
+                </div>
+            </div>
 
             <div class="list__product">
                 

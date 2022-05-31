@@ -17,8 +17,9 @@ async function getProduct(){
             let dataCate;
             let category;
             
-            nameCategory.addEventListener('click',() => {
+            nameCategory.addEventListener('click',(e) => {
                 category = nameCategory.getAttribute('data')
+                
                 switch(category){
                     case 'phimbo':
                         dataCate = data.phim.phimbo
@@ -80,11 +81,6 @@ function setActiveButton(){
 
 }
 
-// get value của từng category trong select
-function categoryChanged(obj){
-    let data = obj.value
-}
-
 
 function setValueFilmOnLoCal(){
     const films = document.querySelectorAll('.item-product')
@@ -107,36 +103,83 @@ function setValueFilmOnLoCal(){
     })
 }
 
-//Hàm xử lý các button category
-// function category(){
 
-//     const nameCategorys = document.querySelectorAll('.btn-category')
-    
-//     //Xử lí click vào category nào thì đổ data đó
-//     nameCategorys.forEach(nameCategory =>{
+async function callAPI(cate,catefilter){
+    let response = await fetch('https://api.apify.com/v2/key-value-stores/QubTry45OOCkTyohU/records/LATEST?fbclid=IwAR0o4Tue7odpOekyutVtoTNTb24b4lmAnI0jHqAP-ma35cLmvGfcPccbeEY')
+    let data = await response.json()
+    let dataCate = data["phim"][`${cate}`]
+    let htmls = dataCate.map(item => {
+        let theloai = item.category
+        let changeValue
+        if (cate == "phimbo"){
+            changeValue = "undefined"
+        }
+        switch(theloai){
+            case 'Phim tình cảm':
+                return(
+                    `
+                    <a href="./watchFilm.html?url=${item.episode.length > 0?item.episode[0].url:''}&theloai=${changeValue}"  class="item-product">
+                        <div class="img-product">
+                            <img src="${item.imageUrl}" alt="">
+                        </div>
+                        <div class="title-product">
+                            <h3 class="heading-product">${item.title}</h3>
+                            <p class="category-product">${item.category}</p>
+                            <p class="episode-product">${item.episode.length} Tập</p>
+                        </div>
+                    </a>`
+                )
+            
+        }
         
-//         getProduct() // Mặc định cho category = phim bộ
-//         nameCategory.addEventListener('click',() => {
-//             nameCategory.classList.add('active')
-//             let category = nameCategory.getAttribute('data')
-//            switch(category){
-//                 case 'phimbo':
-//                     getProduct()
-//                     break;
-//                 case 'phimle':
-                   
-                    
-//                     break;
-//                 case 'phimchieurap':
-                    
-//                     break;
-//                 case 'phimhoathinh':
-                    
-//            }
-//         })
-//     })
-// }
+    })
+    listProduct.innerHTML = htmls.join('')
+    setValueFilmOnLoCal()
+}
 
+
+const parentFilter = document.querySelector('.list__filter')
+
+const parentListCategorys = document.querySelector('.list__filter-category')
+const filterCategorys = parentFilter.querySelectorAll('.filter__category-item')
+
+parentFilter.addEventListener('click',()=>{
+    parentListCategorys.classList.add('show')
+})
+
+filterCategorys.forEach(category => {
+    category.addEventListener('click', (e) => {
+        const textFilterParent = parentFilter.querySelector('span')
+        textFilterParent.innerText = category.innerHTML
+        let cateFilter = category.innerHTML
+        console.log(cateFilter);
+        const btnCategory = document.querySelectorAll('.btn-category')
+        btnCategory.forEach(btn =>{
+            if(btn.classList.contains('active')){
+                let categoryFilm = btn.getAttribute('data') // Get Category để filter 
+                switch(categoryFilm){
+                    case 'phimbo' :
+                        callAPI(categoryFilm,cateFilter)
+                        break;
+                    case 'phimle' :
+                        callAPI(categoryFilm,cateFilter)
+                        break;
+                    case 'phimchieurap' :
+                        callAPI(categoryFilm,cateFilter)
+                        break;
+                    case 'phimchieurap' :
+                        callAPI(categoryFilm,cateFilter)
+                        break;
+                    default :
+                        alert('Không có Thể loại này')
+                }
+                
+            }
+        })
+        
+
+    })
+})
 
 
 // --------------- GỌI HÀM------------------------

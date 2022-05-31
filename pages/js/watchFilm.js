@@ -2,6 +2,7 @@ const API = 'https://api.apify.com/v2/key-value-stores/QubTry45OOCkTyohU/records
 
 let getFilm = JSON.parse(localStorage.getItem('film'))
 let getURL = new URLSearchParams(window.location.search).get("url") || "";
+
 const containerVideo = document.querySelector('.container-video') 
 const video = document.querySelector('.video')
 video.setAttribute('src',getURL);
@@ -25,8 +26,8 @@ function getValueFilmOnLocal(){
     categoryVideo.innerHTML = getFilm.category
     episodeVideo.innerHTML = `Phim có tất cả ${getFilm.episodes}`
 }
-getValueFilmOnLocal()
 
+getValueFilmOnLocal()
 
 let getTheLoai = new URLSearchParams(window.location.search).get("theloai") || "";
 async function callAPI(){
@@ -46,6 +47,7 @@ function showEpisodeFilm(data){
         case 'undefined':
             indexVideo = getFilm.length
             dataCate = data.phim.phimbo[indexVideo].episode
+            
             htmls = dataCate.map(episode =>{
                 return `
                 ${episode.episode > 0 ?`<a href="${episode.url}" class="episode__link">Tập ${episode.episode}</a>` : '' }
@@ -92,6 +94,7 @@ function showEpisodeFilm(data){
 
 
 function getURLEpisode(){
+    
     const getURLEpisode = document.querySelectorAll('.episode__link')
     getURLEpisode.forEach(item =>{
         item.addEventListener('click',(e)=>{

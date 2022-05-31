@@ -101,8 +101,9 @@ img{
     font-size: 1.8rem;
     font-weight: 500;
 }
-.user > i{
-    font-size: 1.8rem;
+.user > img{
+    width: 40px;
+    height: 40px;
 }
 .sign__in--link{
     width: max-content;
@@ -150,7 +151,8 @@ img{
     font-size: 2.5rem;
     font-weight: 500;
 }
-.list__product{
+.list__product,
+.list__product--trending{
     margin-top: 30px;
 }
 .item__product{
@@ -160,6 +162,10 @@ img{
     border-radius: 10px;
     text-align: center;
     margin-right: 50px;
+}
+.img__product{
+    width: 100%;
+    height: 250px;
 }
 .item__product img{
     border-radius: 10px;
