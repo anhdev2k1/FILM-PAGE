@@ -3,10 +3,20 @@ const btnPost = document.querySelector('.post')
 const layerTrans = document.querySelector('.layer__form')
 const form = document.querySelector('#form__container')
 const btnSubmit = document.querySelector('.submit')
+
+let getIsLogin = JSON.parse(localStorage.getItem('islogin'))
+console.log(getIsLogin);
 document.addEventListener('click', e => {
+    
     if(btnPost.contains(e.target)){
-      layerTrans.classList.add('active');
-      document.querySelector('body').classList.add('disable-scroll')
+        if(getIsLogin){
+            layerTrans.classList.add('active');
+            document.querySelector('body').classList.add('disable-scroll')
+        }else{
+            toastr.error("Vui lòng đăng nhập")
+        }
+        
+        
     }
     if(form.contains(e.target) || btnPost.contains(e.target)){
       return
@@ -15,8 +25,11 @@ document.addEventListener('click', e => {
     layerTrans.classList.remove('active');
     document.querySelector('body').classList.remove('disable-scroll')
 })
-const content = document.querySelector('.content')
 
+
+
+// render bài post
+const content = document.querySelector('.content')
 async function getFilm(api){
 
     let response = await fetch(api)
@@ -51,7 +64,6 @@ getFilm('https://6289f509e5e5a9ad321f5d6e.mockapi.io/products')
 function createUser(){
     const signInHTML = document.querySelector('.sign__in')
 const logoutLink = document.querySelector('.sign__in--link')
-let getIsLogin = JSON.parse(localStorage.getItem('islogin'))
 
 if(getIsLogin.islogin){
     const logOut = document.querySelector('.text-signin')
@@ -73,7 +85,7 @@ if(getIsLogin.islogin){
 
 logoutLink.addEventListener('click',(e)=>{
     
-    let removeIsLogin = localStorage.removeItem('islogin')
+    localStorage.removeItem('islogin')
 })
 }
 createUser()

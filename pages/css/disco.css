@@ -241,3 +241,13 @@ body.disable-scroll{
 .fa-heart.active{
     color: red;
 }
+
+/*------TOAST -----*/
+.toast-error{
+    background-color: red !important;
+    font-size: 1.5rem;
+}
+.toast-success{
+    background-color: rgb(13, 170, 13) !important;
+    font-size: 1.5rem;
+}

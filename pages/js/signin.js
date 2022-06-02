@@ -2,7 +2,7 @@
 
 let admin = {
     username:'admin',
-    password:123
+    password:'123'
 }
 let setAdmin = localStorage.setItem('admin',JSON.stringify(admin));
 
@@ -12,18 +12,54 @@ function signIn(){
     let username = document.querySelector('.username').value
     let password = document.querySelector('.password').value
     let email = document.querySelector('.email').value
-    let user ={
-        username : username,
-        password : password,
-        email : email
+    function validateEmail(email) 
+    {
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
     }
+    
     if(username == "" || password == "" || email == ""){
         toastr.error("Vui lòng nhập đủ thông tin")
     }
     else{
-        let setUser = localStorage.setItem(username,JSON.stringify(user));
-        toastr.success("Đăng kí thành công")
-        setTimeout(nextPageLogin,1000)
+        let users = JSON.parse(localStorage.getItem('users')) || []
+        const newUser ={
+            username : username,
+            password : password,
+            email : email
+        }
+        if( users.length == 0){
+            if(validateEmail(email)){
+                console.log("Email đúng định dang");
+                users.push(newUser)
+                localStorage.setItem("users",JSON.stringify(users));
+                toastr.success("Đăng kí thành công")
+                setTimeout(nextPageLogin,1000)
+            }else{
+                toastr.error("Email không đúng định dạng")
+            }
+            
+        }
+        else{
+            let currentUser = users.find(user => user.username == username)
+            let currentUserEmail = users.find(user => user.email == email)
+            if(currentUser){
+                toastr.error("Username đã tồn tại")
+            }else if(currentUserEmail){
+                toastr.error("Email đã tồn tại")
+            }else{
+                if(validateEmail(email)){
+                    users.push(newUser)
+                    localStorage.setItem("users",JSON.stringify(users));
+                    toastr.success("Đăng kí thành công")
+                    setTimeout(nextPageLogin,1000)
+                }else{
+                    toastr.error("Email không đúng định dạng")
+                }
+                
+            }
+        }
+        
     }
 
 }
@@ -38,28 +74,38 @@ function nextPageHome(){
 function login(){
     let username = document.querySelector('.username').value
     let password = document.querySelector('.password').value
-    let data = JSON.parse(localStorage.getItem(username))
+    let users = JSON.parse(localStorage.getItem('users'))
     let isLogin = {
         islogin : true,
         username : username
     }
-    
-    if(data == null){
+    if(username == "" || password == ""){
         toastr.error("Đăng nhập thất bại , vui lòng kiểm trai lại !!")
-
-    }else if(username == admin.username && password == admin.password){
-        toastr.success("Đăng nhập thành công")
         
-        window.location.href ="./admin.html"
-    }else if(username == data.username && password == data.password){  
-        toastr.success("Đăng nhập thành công")
-        localStorage.setItem('islogin',JSON.stringify(isLogin)) // Nếu login thành công , gán islogin vào storage
-        setTimeout(nextPageHome,1000)
+    }else{
+        let currentUser = users.find( user => user.username == username )
+        
+        if(currentUser || username == admin.username){
+            if(currentUser?.password == password ){
+                toastr.success("Đăng nhập thành công")
+                localStorage.setItem('islogin',JSON.stringify(isLogin))
+                setTimeout(nextPageHome,1000)
+            }
+            else if(admin.password === password){
+                toastr.success("Đăng nhập admin thành công")
+                setTimeout(nextAdmin,1000)
+            }
+            else{
+                toastr.error("Không đúng mật khẩu")
+            }
+        }
+        else{
+            toastr.error("Không đúng tài khoản")
+        }
+        
     }
-    else{
-        toastr.error("Đăng nhập thất bại")
-    }
-
-
+}
+function nextAdmin(){
+    window.location.href = "./admin.html"
 }
 

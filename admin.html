@@ -5,17 +5,62 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang Admin</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./pages/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 <body>
     <div class="container">
         <h1>ADMIN</h1>
+        <div class="tab">
+            <button class="tablinks" onclick="openmodal(event, 'manage')">Quản lý</button>
+            <button class="tablinks" onclick="openmodal(event, 'statis')">Thống kê</button>
+        </div>
+          
+        <div id="manage" class="tabcontent">
+            <div class="list__manage">
+                <div class="btn__tab">
+                    <button class="manage-link" onclick="openManage(event, 'manage-acount')">Quản lý tài khoản</button>
+                    <button class="manage-link" onclick="openManage(event, 'manage-post')">Quản lý bài đăng</button>
+                </div>
 
-        <div class="container__chart">
-            <canvas id="canvas" height="450" width="600"></canvas>
+                    <div id="manage-acount" class="tab-manage">
+                        <h2>Danh sách tài khoản</h2>
+                        <div class="heading__user">
+                            <div class="heading__username">Tên tài khoản</div>
+                            <div class="heading__email">Email</div>
+                            <div class="delete">Xóa</div>
+                        </div>
+                        <div class="list__user">
+                            
+                        </div>
+                    </div>
+                    <div id="manage-post" class="tab-manage">
+                        <h2>Danh sách bài đăng</h2>
+                        <div class="heading__post">
+                            <div class="heading__username">Tên tài khoản</div>
+                            <div class="heading__email">Link video</div>
+                            <div class="heading__desc">Title</div>
+                            <div class="delete">Xóa</div>
+                        </div>
+                        <div class="list__post">
+                            
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+        <div id="statis" class="tabcontent">
+            <div class="container">
+                <canvas id="myChart"></canvas>
+            </div>
         </div>
     </div>
-    <script src="./js/admin.js"></script>
-    <script src="../src/js/main.js"></script>
+    
+    <script src="./pages/js/admin.js"></script>
 </body>
 </html>
