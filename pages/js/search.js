@@ -1,25 +1,51 @@
 
 
+// Hàm show item Phim 
+
 const searchValue = document.querySelector('.input__search')
 const searchBtn = document.querySelector('.btn__search')
 
-
-async function nameFilm(name){
+async function nameFilm(){
     let response = await fetch('https://api.apify.com/v2/key-value-stores/QubTry45OOCkTyohU/records/LATEST?fbclid=IwAR0o4Tue7odpOekyutVtoTNTb24b4lmAnI0jHqAP-ma35cLmvGfcPccbeEY')
     let data =  await response.json()
-    let nameFilm = data.phim.phimhoathinh
-    searchBtn.addEventListener('click',()=>{
+    let nameFilm;
+    searchBtn.addEventListener('click',(e)=>{
+        e.preventDefault()
+        let filterFilm;
         let dataSearch = searchValue.value
-        nameFilm.forEach(item => {
+        nameFilm = data.phim.phimhoathinh
+        filterFilm = nameFilm.filter(item => {
             let name = item.title
-            if(removeVietnameseTones(name).toLowerCase().includes(dataSearch)){
-                 
-            }
-            
-
+            return removeVietnameseTones(name).toLowerCase().includes(removeVietnameseTones(dataSearch));            
         });
-    })
+        console.log(filterFilm.length);
+        if(filterFilm.length == 0){
+            nameFilm = data.phim.phimbo
+            filterFilm = nameFilm.filter(item => {
+                let name = item.title
+                return removeVietnameseTones(name).toLowerCase().includes(removeVietnameseTones(dataSearch));            
+            });
+        }if(filterFilm.length == 0){
+            nameFilm = data.phim.phimle
+            filterFilm = nameFilm.filter(item => {
+                let name = item.title
+                return removeVietnameseTones(name).toLowerCase().includes(removeVietnameseTones(dataSearch));            
     
+            });
+        }if(filterFilm.length == 0){
+            nameFilm = data.phim.chieurap
+            filterFilm = nameFilm.filter(item => {
+                let name = item.title
+                return removeVietnameseTones(name).toLowerCase().includes(removeVietnameseTones(dataSearch));            
+    
+            });
+        }else if(filterFilm.length > 0){
+            localStorage.setItem('dataSearch',JSON.stringify(filterFilm))
+        }
+
+        
+        // console.log(filterFilm);
+    })
 }
 nameFilm()
 function removeVietnameseTones(str) {

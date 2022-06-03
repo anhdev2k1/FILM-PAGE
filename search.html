@@ -9,9 +9,30 @@
 <body>
     
     <div class="container">
-
+        <div class="list__product"></div>
     </div>
-    <script src="./pages/js/search.js"></script>
-    <script src="../src/js/main.js"></script>
+    
+    <script>
+        const listProductSearch = document.querySelector('.list__product')
+        let getDataSearch = JSON.parse(localStorage.getItem('dataSearch')) || []
+        function showProducts(){
+    let htmls = getDataSearch.map(item => {
+        return `
+        <a href="./watchFilm.html?url=${item.episode.length > 0?item.episode[0].url:''}"  class="item-product">
+            <div class="img-product">
+                <img src="${item.imageUrl}" alt="">
+            </div>
+            <div class="title-product">
+                <h3 class="heading-product">${item.title}</h3>
+                <p class="category-product">${item.category}</p>
+                <p class="episode-product">${item.episode.length} Tập</p>
+            </div>
+        </a>
+        `
+    })
+    listProductSearch.innerHTML = htmls.join('')
+}
+showProducts()
+    </script>
 </body>
 </html>

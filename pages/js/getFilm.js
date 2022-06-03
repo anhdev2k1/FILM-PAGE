@@ -128,4 +128,5 @@ formPost.addEventListener('submit',(e) => {
             }
         )})
             alert("Đăng bài thành công")
+            window.location.reload()
 })
