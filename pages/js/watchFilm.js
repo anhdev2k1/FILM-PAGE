@@ -37,60 +37,6 @@ async function callAPI(){
 }
 callAPI()
 
-// function showEpisodeFilm(data){
-//     let dataCate;
-//     let indexVideo;
-//     let htmls;
-//     switch(getTheLoai){
-        
-//         case 'undefined':
-//             indexVideo = getFilm.length
-//             dataCate = data.phim.phimbo[indexVideo].episode
-            
-            
-//             htmls = dataCate.map(episode =>{
-//                 return `
-//                 ${episode.episode > 0 ?`<a href="${episode.url}" class="episode__link">Tập ${episode.episode}</a>` : '' }
-//                 `
-//             })
-//             listEpisode.innerHTML = htmls.join('')
-//             getURLEpisode();
-//             break;
-//         case 'phimle':
-//             indexVideo = getFilm.length
-//             dataCate = data.phim.phimle[indexVideo].episode
-//             htmls = dataCate.map(episode =>{
-//                 return `
-//                 <a href="${episode.url}" class="episode__link">Tập ${episode.episode}</a>
-//                 `
-//             })
-//             listEpisode.innerHTML = htmls.join('')
-//             getURLEpisode();
-//             break;
-//         case 'phimchieurap':
-//             indexVideo = getFilm.length
-//             dataCate = data.phim.phimchieurap[indexVideo].episode
-//             htmls = dataCate.map(episode =>{
-//                 return `
-//                 <a href="${episode.url}" class="episode__link">Tập ${episode.episode}</a>
-//                 `
-//             })
-//             listEpisode.innerHTML = htmls.join('')
-//             getURLEpisode();
-//             break;
-//         case 'phimhoathinh':
-//             indexVideo = getFilm.length
-//             dataCate = data.phim.phimhoathinh[indexVideo].episode
-//             htmls = dataCate.map(episode =>{
-//                 return `
-//                 <a href="${episode.url}" class="episode__link">Tập ${episode.episode}</a>
-//                 `
-//             })
-//             listEpisode.innerHTML = htmls.join('')
-//             getURLEpisode();
-//             break;
-//     }
-// }
 const listEpisode = document.querySelector('.list__episode')
 function showEpisodeFilm(data){
     let dataCate;

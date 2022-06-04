@@ -5,34 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Movie</title>
+    <link rel="stylesheet" href="./pages/css/getFilmSearch.css">
 </head>
 <body>
     
     <div class="container">
+        <h2 class="heading__search">Danh sách Phim bạn đã tìm kiếm</h2>
         <div class="list__product"></div>
     </div>
     
     <script>
-        const listProductSearch = document.querySelector('.list__product')
-        let getDataSearch = JSON.parse(localStorage.getItem('dataSearch')) || []
-        function showProducts(){
-    let htmls = getDataSearch.map(item => {
-        return `
-        <a href="./watchFilm.html?url=${item.episode.length > 0?item.episode[0].url:''}"  class="item-product">
-            <div class="img-product">
-                <img src="${item.imageUrl}" alt="">
-            </div>
-            <div class="title-product">
-                <h3 class="heading-product">${item.title}</h3>
-                <p class="category-product">${item.category}</p>
-                <p class="episode-product">${item.episode.length} Tập</p>
-            </div>
-        </a>
-        `
-    })
-    listProductSearch.innerHTML = htmls.join('')
-}
-showProducts()
     </script>
+    <script src="./pages/js/getFilmSearch.js"></script>
+    <script src="./pages/js/watchFilm.js"></script>
 </body>
 </html>

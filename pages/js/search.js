@@ -10,44 +10,30 @@ async function nameFilm(){
     let data =  await response.json()
     let nameFilm;
     searchBtn.addEventListener('click',(e)=>{
-        e.preventDefault()
         let filterFilm;
         let dataSearch = searchValue.value
-        nameFilm = data.phim.phimhoathinh
-        filterFilm = nameFilm.filter(item => {
-            let name = item.title
-            return removeVietnameseTones(name).toLowerCase().includes(removeVietnameseTones(dataSearch));            
-        });
-        console.log(filterFilm.length);
-        if(filterFilm.length == 0){
-            nameFilm = data.phim.phimbo
-            filterFilm = nameFilm.filter(item => {
-                let name = item.title
-                return removeVietnameseTones(name).toLowerCase().includes(removeVietnameseTones(dataSearch));            
-            });
-        }if(filterFilm.length == 0){
-            nameFilm = data.phim.phimle
-            filterFilm = nameFilm.filter(item => {
-                let name = item.title
-                return removeVietnameseTones(name).toLowerCase().includes(removeVietnameseTones(dataSearch));            
-    
-            });
-        }if(filterFilm.length == 0){
-            nameFilm = data.phim.chieurap
-            filterFilm = nameFilm.filter(item => {
-                let name = item.title
-                return removeVietnameseTones(name).toLowerCase().includes(removeVietnameseTones(dataSearch));            
-    
-            });
-        }else if(filterFilm.length > 0){
-            localStorage.setItem('dataSearch',JSON.stringify(filterFilm))
-        }
-
+        nameFilm = data.phim
         
-        // console.log(filterFilm);
+        let dataCateArray = Object.entries(nameFilm); // Chuyển nameFilm dạng Object về Array
+        let objFilmSearch = [];
+        dataCateArray.forEach(cate =>{
+            filterFilm = cate[1].filter(item =>{
+                let name = item.title
+                return removeVietnameseTones(name).toLowerCase().includes(removeVietnameseTones(dataSearch));    
+            })
+            if(filterFilm.length > 0){
+                objFilmSearch.push(filterFilm)
+            }else{
+                return
+            }
+        })
+        
+        localStorage.setItem('getDataSearch',JSON.stringify(objFilmSearch))
+        
     })
 }
 nameFilm()
+
 function removeVietnameseTones(str) {
     str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g,"a"); 
     str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g,"e"); 
