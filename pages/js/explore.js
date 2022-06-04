@@ -53,6 +53,7 @@ async function getProduct(){
 // Hàm show item Phim 
 function showProducts(data,theloai){
     let htmls = data.map(item => {
+        // console.log(item);
         return `
         <a href="./watchFilm.html?url=${item.episode.length > 0?item.episode[0].url:''}&theloai=${theloai}"  class="item-product">
             <div class="img-product">
@@ -66,7 +67,9 @@ function showProducts(data,theloai){
         </a>
         `
     })
+    
     listProduct.innerHTML = htmls.join('')
+
 }
 
 // Set active cho các category button
@@ -85,8 +88,9 @@ function setActiveButton(){
 function setValueFilmOnLoCal(){
     const films = document.querySelectorAll('.item-product')
     films.forEach((film ,index)=> {
-        film.addEventListener('click',()=>{
+        film.addEventListener('click',(e)=>{
             
+            console.log(film);
             let nameFilm = film.querySelector('.heading-product').innerHTML
             let cateFilm = film.querySelector('.category-product').innerHTML
             let episode = film.querySelector('.episode-product').innerHTML

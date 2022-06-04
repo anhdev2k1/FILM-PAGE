@@ -1,12 +1,10 @@
 const API = 'https://api.apify.com/v2/key-value-stores/QubTry45OOCkTyohU/records/LATEST?fbclid=IwAR0o4Tue7odpOekyutVtoTNTb24b4lmAnI0jHqAP-ma35cLmvGfcPccbeEY'
-
-let getFilm = JSON.parse(localStorage.getItem('film'))
 let getURL = new URLSearchParams(window.location.search).get("url") || "";
-
+let getData = JSON.parse(localStorage.getItem('getDataSearch')) || []
+let getFilm = JSON.parse(localStorage.getItem('film'))
 const containerVideo = document.querySelector('.container-video') 
 const video = document.querySelector('.video')
 video.setAttribute('src',getURL);
-
 
 if(getURL === ""){
    
@@ -29,96 +27,19 @@ function getValueFilmOnLocal(){
 
 getValueFilmOnLocal()
 
-let getTheLoai = new URLSearchParams(window.location.search).get("theloai") || "";
-async function callAPI(){
-    let response = await fetch(API)
-    let data = await response.json()
-    showEpisodeFilm(data)
-}
-callAPI()
 
 const listEpisode = document.querySelector('.list__episode')
-// function showEpisodeFilm(data){
-//     let dataCate;
-//     let htmls;
-//     let filterFilm;
-//     let episodeFilm;
-//     switch(getTheLoai){ 
-//         case 'undefined':
-//             dataCate = data.phim.phimbo
-//             filterFilm = dataCate.filter(item => {
-//                 let name = item.title
-//                 return removeVietnameseTones(name).toLowerCase().includes(removeVietnameseTones(getFilm.name).toLowerCase())            
-    
-//             })
-//             episodeFilm = filterFilm[0].episode;
-//             htmls = episodeFilm.map(episode => {
-//                 return `${episode.episode > 0 ?`<a href="${episode.url}" class="episode__link">Tập ${episode.episode}</a>` : '' }`
-                
-//             })
-//             listEpisode.innerHTML = htmls.join('')
-//             getURLEpisode();
-//             break;
-//         case 'phimle':
-//                 dataCate = data.phim.phimle
-//             filterFilm = dataCate.filter(item => {
-//                 let name = item.title
-//                 return removeVietnameseTones(name).toLowerCase().includes(removeVietnameseTones(getFilm.name).toLowerCase())            
-//             })
-//             episodeFilm = filterFilm[0].episode;
-//             htmls = episodeFilm.map(episode => {
-//                 return `${episode.episode > 0 ?`<a href="${episode.url}" class="episode__link">Tập ${episode.episode}</a>` : '' }`
-                
-//             })
-//             listEpisode.innerHTML = htmls.join('')
-//             getURLEpisode();
-//             break;
-//         case 'phimchieurap':
-//                 dataCate = data.phim.phimchieurap
-//                 filterFilm = dataCate.filter(item => {
-//                     let name = item.title
-//                     return removeVietnameseTones(name).toLowerCase().includes(removeVietnameseTones(getFilm.name).toLowerCase())            
-    
-//                 })
-//                 episodeFilm = filterFilm[0].episode;
-//                 htmls = episodeFilm.map(episode => {
-//                     return `${episode.episode > 0 ?`<a href="${episode.url}" class="episode__link">Tập ${episode.episode}</a>` : '' }`
-                
-//                 })
-//                 listEpisode.innerHTML = htmls.join('')
-//                 getURLEpisode();
-//             break;
-//         case 'phimhoathinh':
-//                 dataCate = data.phim.phimhoathinh
-//                 filterFilm = dataCate.filter(item => {
-//                     let name = item.title
-//                     return removeVietnameseTones(name).toLowerCase().includes(removeVietnameseTones(getFilm.name).toLowerCase())            
-        
-//                 })
-//                 episodeFilm = filterFilm[0].episode;
-//                 htmls = episodeFilm.map(episode => {
-//                     return `${episode.episode > 0 ?`<a href="${episode.url}" class="episode__link">Tập ${episode.episode}</a>` : '' }`
-                    
-//                 })
-//                 listEpisode.innerHTML = htmls.join('')
-//                 getURLEpisode();
-//             break;
-//     }
-// }
 
 
-    
-function showEpisodeFilm(data){
-    let dataCate;
+function showEpisodeFilm(){
     let htmls;
     let filterFilm;
     let episodeFilm;
     
-    dataCate = data.phim
-    let dataCateArray = Object.entries(dataCate)
+    // let dataCateArray = Object.entries(dataCate)
     let objFilm = [];
-    dataCateArray.forEach(cate =>{
-        filterFilm = cate[1].filter(item =>{
+    getData.forEach(cate =>{
+        filterFilm = cate.filter(item =>{
             let name = item.title
             return removeVietnameseTones(name).toLowerCase().includes(removeVietnameseTones(getFilm.name).toLowerCase())
         })
@@ -127,6 +48,7 @@ function showEpisodeFilm(data){
         }else{
             return
         }
+        console.log(objFilm[0][0].episode);
         episodeFilm = objFilm[0][0].episode;
         htmls = episodeFilm.map(episode =>{
             return `${episode.episode > 0 ?`<a href="${episode.url}" class="episode__link">Tập ${episode.episode}</a>` : '' }`
@@ -135,7 +57,7 @@ function showEpisodeFilm(data){
         getURLEpisode();
     })
 }
-
+showEpisodeFilm()
 function getURLEpisode(){
     
     const getURLEpisode = document.querySelectorAll('.episode__link')
