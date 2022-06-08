@@ -106,7 +106,7 @@ formPost.addEventListener('submit',(e) => {
     let desc = formData.get('desc')
     let link = formData.get('link')
     if(desc == "" || link == ""){
-        alert(" Vui lòng không được bỏ trống")
+        toastr.error("Vui lòng không được để trống")
         return
     }
     let getStartCut = link.indexOf('=')
@@ -127,6 +127,11 @@ formPost.addEventListener('submit',(e) => {
                 nsx:"nsx"
             }
         )})
-            alert("Đăng bài thành công")
-            window.location.reload()
+            // alert("Đăng bài thành công")
+            toastr.success("Đăng bài thành công")
+            setTimeout(reload,1000)
 })
+
+function reload(){
+    window.location.reload()
+}

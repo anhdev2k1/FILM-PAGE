@@ -183,6 +183,9 @@ body.disable-scroll{
     border-radius: 8px;
     text-indent: 8px;
 }
+.submit{
+    cursor: pointer;
+}
 .content h2{
     color: white;
 }

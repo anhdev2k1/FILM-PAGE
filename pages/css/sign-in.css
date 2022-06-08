@@ -25,6 +25,8 @@ html{
     display: flex;
     flex-direction: column;
     padding: 30px;
+    box-shadow: rgb(80, 78, 78) 0px 25px 50px -12px;
+    border-radius: 8px;
 }
 .form__item{
     margin-bottom: 20px;
@@ -42,7 +44,9 @@ html{
     outline: none;
     font-size: 1.5rem;
     text-indent: 8px;
+    border-radius: 5px;
 }
+
 .btn__signin{
     display: block;
     width: max-content;
