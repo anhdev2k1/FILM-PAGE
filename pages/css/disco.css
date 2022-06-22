@@ -241,10 +241,21 @@ body.disable-scroll{
     transform: translateY(-50%);
     cursor: pointer;
 }
-.fa-heart.active{
-    color: red;
-}
 
+.btn-like.active{
+    background-color: red;
+}
+.btn-like.active .fa-heart{
+    animation: heart .5s forwards;
+}
+@keyframes heart{
+    from{
+        transform: scale(0);
+    }
+    to{
+        transform: scale(1.1);
+    }
+}
 /*------TOAST -----*/
 .toast-error{
     background-color: red !important;

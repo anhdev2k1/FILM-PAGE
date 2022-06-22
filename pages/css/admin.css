@@ -9,11 +9,18 @@ html{
     font-family: 'Barlow', sans-serif;
 }
 
+.back{
+    cursor: pointer;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: red;
+}
 .tab {
     width: 1200px;
     overflow: hidden;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
+    color: black;
 }
   
   /* Style the buttons inside the tab */
@@ -26,6 +33,7 @@ html{
     padding: 14px 16px;
     transition: 0.3s;
     font-size: 17px;
+    
   }
   
   /* Change background color of buttons on hover */
@@ -87,7 +95,6 @@ html{
     font-size: 1.6rem;
     cursor: pointer;
 }
-
 .list__user .user .fa-trash{
     cursor: pointer;
     font-size: 1.8rem;

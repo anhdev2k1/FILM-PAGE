@@ -5,7 +5,6 @@ const form = document.querySelector('#form__container')
 const btnSubmit = document.querySelector('.submit')
 
 let getIsLogin = JSON.parse(localStorage.getItem('islogin'))
-console.log(getIsLogin);
 document.addEventListener('click', e => {
     
     if(btnPost.contains(e.target)){
@@ -56,14 +55,14 @@ async function getFilm(api){
     })
 
     content.innerHTML = htmls.join('')
-    
+    handelClickLike()
 }
 
 getFilm('https://6289f509e5e5a9ad321f5d6e.mockapi.io/products')
 
-function createUser(){
+function createUser(){ // Tạo ra div user
     const signInHTML = document.querySelector('.sign__in')
-const logoutLink = document.querySelector('.sign__in--link')
+    const logoutLink = document.querySelector('.sign__in--link')
 
 if(getIsLogin.islogin){
     const logOut = document.querySelector('.text-signin')
@@ -135,3 +134,20 @@ formPost.addEventListener('submit',(e) => {
 function reload(){
     window.location.reload()
 }
+
+function handelClickLike(){
+    
+    const btnLike = document.querySelectorAll('.btn-like')
+    btnLike.forEach(btn =>{
+        btn.addEventListener('click',()=>{
+            btn.classList.toggle('active')
+            if(btn.classList.contains("active")){
+                toastr.success("Đã thích bài viết !")
+            }else{
+                toastr.success("Không thích bài viết này nữa !")
+            }
+        })
+    })
+}
+
+

@@ -53,9 +53,9 @@ async function getProduct(){
 // Hàm show item Phim 
 function showProducts(data,theloai){
     let htmls = data.map(item => {
-        // console.log(item);
+        
         return `
-        <a href="./watchFilm.html?url=${item.episode.length > 0?item.episode[0].url:''}&theloai=${theloai}"  class="item-product">
+        <a href="./watchFilm.html?url=${item.episode.length > 0 ? item.episode[0].url : ''}&theloai=${theloai}"  class="item-product">
             <div class="img-product">
                 <img src="${item.imageUrl}" alt="">
             </div>
@@ -87,10 +87,9 @@ function setActiveButton(){
 
 function setValueFilmOnLoCal(){
     const films = document.querySelectorAll('.item-product')
-    films.forEach((film ,index)=> {
+    films.forEach((film)=> {
         film.addEventListener('click',(e)=>{
             
-            console.log(film);
             let nameFilm = film.querySelector('.heading-product').innerHTML
             let cateFilm = film.querySelector('.category-product').innerHTML
             let episode = film.querySelector('.episode-product').innerHTML
@@ -98,10 +97,9 @@ function setValueFilmOnLoCal(){
                 name: nameFilm,
                 category:cateFilm,
                 episodes : episode,
-                length: index
+                
             }
-            let setFilm = localStorage.setItem('film',JSON.stringify(objFilm));
-            
+            localStorage.setItem('film',JSON.stringify(objFilm));
         })
         
     })
@@ -112,7 +110,6 @@ async function callAPI(cate,catefilter){
     let response = await fetch('https://api.apify.com/v2/key-value-stores/QubTry45OOCkTyohU/records/LATEST?fbclid=IwAR0o4Tue7odpOekyutVtoTNTb24b4lmAnI0jHqAP-ma35cLmvGfcPccbeEY')
     let data = await response.json()
     let dataCate = data["phim"][`${cate}`]
-    // console.log(catefilter == "Phim tình cảm" ? true : false);
     let htmls = dataCate.map(item => {
         let theloai = item.category
         let changeValue
@@ -143,6 +140,9 @@ async function callAPI(cate,catefilter){
 }
 
 
+
+
+// LỌC
 const parentFilter = document.querySelector('.list__filter')
 
 const parentListCategorys = document.querySelector('.list__filter-category')

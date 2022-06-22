@@ -130,11 +130,11 @@ btnDel.forEach((btn) => {
       return user.username === idName
     })
     
-      let del = getUsers.splice(indexUser,1)
-      localStorage.setItem('users',JSON.stringify(getUsers))
-      showUser(getUsers)
-      toastr.success("Đã xóa user")
-      setTimeout(reload,1000)
+    let del = getUsers.splice(indexUser,1)
+    localStorage.setItem('users',JSON.stringify(getUsers))
+    showUser(getUsers)
+    toastr.success("Đã xóa user")
+    setTimeout(reload,1000)
   })
 })
 

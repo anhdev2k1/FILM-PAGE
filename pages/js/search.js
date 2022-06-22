@@ -15,6 +15,7 @@ async function nameFilm(){
         nameFilm = data.phim
         
         let dataCateArray = Object.entries(nameFilm); // Chuyển nameFilm dạng Object về Array
+        console.log(dataCateArray);
         let objFilmSearch = [];
         dataCateArray.forEach(cate =>{
             filterFilm = cate[1].filter(item =>{
