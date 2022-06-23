@@ -10,6 +10,7 @@ async function nameFilm(){
     let data =  await response.json()
     let nameFilm;
     searchBtn.addEventListener('click',(e)=>{
+        e.preventDefault()
         let filterFilm;
         let dataSearch = searchValue.value
         nameFilm = data.phim
@@ -22,6 +23,7 @@ async function nameFilm(){
                 let name = item.title
                 return removeVietnameseTones(name).toLowerCase().includes(removeVietnameseTones(dataSearch));    
             })
+            console.log(filterFilm);
             if(filterFilm.length > 0){
                 objFilmSearch.push(filterFilm)
             }else{

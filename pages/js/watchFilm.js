@@ -15,7 +15,7 @@ if(getURL === ""){
 
 
 
-
+// Hiện thông tin phim
 function getValueFilmOnLocal(){
 
     const nameVideo = document.querySelector('.name__video')
@@ -40,7 +40,7 @@ callAPI()
 const listEpisode = document.querySelector('.list__episode')
 
 
-    
+// Hiện tập phim
 function showEpisodeFilm(data){
     let dataCate;
     let htmls;

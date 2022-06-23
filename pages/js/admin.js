@@ -125,14 +125,14 @@ const btnDel = document.querySelectorAll('.fa-trash')
 
 btnDel.forEach((btn) => {
   btn.addEventListener('click',()=>{
-    let idName = btn.getAttribute('idName')
-    let indexUser = getUsers.findIndex(user => {
+    let idName = btn.getAttribute('idName') // Lấy ra name của user
+    let indexUser = getUsers.findIndex(user => { // Trả về index của user
       return user.username === idName
     })
-    
-    let del = getUsers.splice(indexUser,1)
-    localStorage.setItem('users',JSON.stringify(getUsers))
-    showUser(getUsers)
+    console.log(indexUser);
+    let del = getUsers.splice(indexUser,1) // Xóa user ở vị trí indexUser
+    localStorage.setItem('users',JSON.stringify(getUsers)) // Set lại users
+    showUser(getUsers) // Hiện lại các users ra web
     toastr.success("Đã xóa user")
     setTimeout(reload,1000)
   })
@@ -168,8 +168,8 @@ function delPost (){
   const btnDelPost = listPostHTML.querySelectorAll('.delete')
   btnDelPost.forEach(btn => {
     btn.addEventListener('click',()=>{
-      let idBtn = btn.getAttribute('index')
-      fetch(`https://6289f509e5e5a9ad321f5d6e.mockapi.io/products/${idBtn}`,{
+      let idBtn = btn.getAttribute('index') // Lấy ra id của bài post
+      fetch(`https://6289f509e5e5a9ad321f5d6e.mockapi.io/products/${idBtn}`,{ // Gửi method Delete lên server
         method: "DELETE",
       })
       toastr.success("Đã xóa bài đăng")
@@ -187,7 +187,6 @@ function reload(){
 //-----------FOCUS POST---------------
 function focusPost(){
   const postFocus = document.querySelectorAll('.post')
-  console.log(postFocus);
   postFocus.forEach(post =>{
     post.addEventListener('click',()=>{
         postFocus.forEach(item => item.classList.remove('active'));
