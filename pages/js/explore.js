@@ -159,7 +159,7 @@ const toggleShowList = () => {
 };
 
 filterCategorys.forEach(category => {
-    category.addEventListener('click', (e) => {
+    category.addEventListener('click', () => {
         const textFilterParent = parentFilter.querySelector('span')
         textFilterParent.innerText = category.innerHTML
         let cateFilter = category.innerHTML

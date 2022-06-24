@@ -9,8 +9,7 @@ async function nameFilm(){
     let response = await fetch('https://api.apify.com/v2/key-value-stores/QubTry45OOCkTyohU/records/LATEST?fbclid=IwAR0o4Tue7odpOekyutVtoTNTb24b4lmAnI0jHqAP-ma35cLmvGfcPccbeEY')
     let data =  await response.json()
     let nameFilm;
-    searchBtn.addEventListener('click',(e)=>{
-        e.preventDefault()
+    searchBtn.addEventListener('click',()=>{
         let filterFilm;
         let dataSearch = searchValue.value
         nameFilm = data.phim

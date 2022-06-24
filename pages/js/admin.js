@@ -147,7 +147,7 @@ async function apiPost(api){
   showPosts(data)
 }
 
-apiPost('https://6289f509e5e5a9ad321f5d6e.mockapi.io/products')
+apiPost('https://6289f509e5e5a9ad321f5d6e.mockapi.io/products');
 
 
 function showPosts(dataPosts){
