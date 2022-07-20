@@ -27,13 +27,49 @@ function getSlickJS(listSlide){
         });
       });
 }
-const infoUser = JSON.parse(localStorage.getItem('islogin')) || {}
+
+
+function checkIsLogin(){
+    const signInHTML = document.querySelector('.sign__in')
+    const logoutLink = document.querySelector('.sign__in--link')
+    const getIsLogin = JSON.parse(localStorage.getItem('islogin')) || {}
+    const infoUser = JSON.parse(localStorage.getItem('newInfo')) || {}
+    if(getIsLogin.islogin){
+        const logOut = document.querySelector('.text-signin')
+        logOut.innerHTML = "Log out"
+
+        let userHTML = document.createElement('div')
+        userHTML.className = "user"
+        signInHTML.appendChild(userHTML)
+
+        let iconUser = document.createElement('img')
+        iconUser.setAttribute('src',infoUser.newKeyInfo || './access/images/user.png')
+        userHTML.appendChild(iconUser)
+
+        let nameUser = document.createElement('h3')
+        nameUser.className = "name__user"
+        userHTML.appendChild(nameUser)
+
+        nameUser.innerHTML = getIsLogin.username
+        handelUserClick()
+    }
+
+    logoutLink.addEventListener('click',(e)=>{
+        localStorage.removeItem('islogin')
+    })
+
+}
+checkIsLogin()
+
+const userHTML = document.querySelector('.user')
+const userImage = userHTML.querySelector('img')
 function handelPreviewInfo(){
-    
+    const getIsLogin = JSON.parse(localStorage.getItem('islogin')) || {}
+    const infoUser = JSON.parse(localStorage.getItem('newInfo')) || {}
     const infoName = document.querySelector('.info__name')
     const infoPass = document.querySelector('.info__pass')
-    infoName.setAttribute('value',infoUser.username)
-    infoPass.setAttribute('value',infoUser.password)
+    infoName.setAttribute('value',getIsLogin.username)
+    infoPass.setAttribute('value',getIsLogin.password)
 
     const inputFile = document.querySelector('#input__file')
     const imgPreview = document.querySelector('.info__img')
@@ -43,15 +79,16 @@ function handelPreviewInfo(){
         let newKeyInfo = file.preview
         newKeyInfo = URL.createObjectURL(file)
         imgPreview.setAttribute('src',newKeyInfo)
-        newInfo = {...infoUser,newKeyInfo}
-        console.log(newInfo);
+        newInfo = {...getIsLogin,newKeyInfo}
     })
     
     const btnPreview = document.querySelector('.btn__preview')
     btnPreview.addEventListener('click',()=>{
         localStorage.setItem('newInfo',JSON.stringify(newInfo))
-        window.location.reload()
+        // window.location.reload()
+        userImage.setAttribute('src',newInfo.newKeyInfo)
     })
+    
 }
 handelPreviewInfo()
 function handelUserClick(){
@@ -74,48 +111,7 @@ const user = document.querySelector('.user')
         document.querySelector('body').classList.remove('disable-scroll')
     })
 
-    
 }
-
-
-
-function checkIsLogin(){
-    const signInHTML = document.querySelector('.sign__in')
-    const logoutLink = document.querySelector('.sign__in--link')
-    const getIsLogin = JSON.parse(localStorage.getItem('newInfo')) || {}
-    if(getIsLogin.islogin){
-        const logOut = document.querySelector('.text-signin')
-        logOut.innerHTML = "Log out"
-
-        let userHTML = document.createElement('div')
-        userHTML.className = "user"
-        signInHTML.appendChild(userHTML)
-
-        let iconUser = document.createElement('img')
-        iconUser.setAttribute('src',getIsLogin.newKeyInfo)
-        userHTML.appendChild(iconUser)
-
-        let nameUser = document.createElement('h3')
-        nameUser.className = "name__user"
-        userHTML.appendChild(nameUser)
-
-        nameUser.innerHTML = getIsLogin.username
-        handelUserClick()
-    }
-
-    logoutLink.addEventListener('click',(e)=>{
-        localStorage.removeItem('islogin')
-    })
-
-}
-checkIsLogin()
-
-
-
-
-
-
-
 
 
 // CLICK SLIDE WATCH FILM

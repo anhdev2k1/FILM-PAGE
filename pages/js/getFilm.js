@@ -86,17 +86,20 @@ const infoUser = JSON.parse(localStorage.getItem('islogin')) || {}
 function handelUserClick(){
 const layerTrans = document.querySelector('.layer__form')
 const form = document.querySelector('#form__container')
-// const user = document.querySelector('.user')
-const btnSubmit = document.querySelector('.submit')
 const btnPost = document.querySelector('.post')
+let getIsLogin = JSON.parse(localStorage.getItem('islogin'))
     document.addEventListener('click',(e)=>{
         if(btnPost.contains(e.target)){
-            layerTrans.classList.add('active');
-            document.querySelector('body').classList.add('disable-scroll')
-        }
-        if(form.contains(e.target) || btnPost.contains(e.target)){
-          return
-        }
+              if(getIsLogin){
+                  layerTrans.classList.add('active');
+                  document.querySelector('body').classList.add('disable-scroll')
+              }else{
+                  toastr.error("Vui lòng đăng nhập")
+              }
+          }
+          if(form.contains(e.target) || btnPost.contains(e.target)){
+            return
+          }
         
         layerTrans.classList.remove('active');
         document.querySelector('body').classList.remove('disable-scroll')
