@@ -96,6 +96,9 @@ body{
     margin: 0 auto;
     margin-top: 100px;
 }
+.user img{
+    border-radius: 50%;
+}
 .user .name__user{
     margin-left: 10px;
     font-size: 1.8rem;
@@ -143,9 +146,44 @@ body.disable-scroll{
     z-index: 9999;
     text-align: center;
     display: none;
+    color: white;
 }
 .layer__form.active{
     display: block;
+}
+.imgPreview{
+    min-width: 200px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+.imgPreview .info__img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.preview{
+    width: max-content;
+    border: 1px dashed #fff;
+    padding: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+.info__item span{
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+.btn__preview{
+    width: max-content;
+    padding: 10px;
+    margin: 0 auto;
+    border: none;
+    cursor: pointer;
+    background-color: var(--color-active);
+    color: white;
 }
 #form__container{
     width: 500px;
@@ -159,18 +197,6 @@ body.disable-scroll{
     border-radius:8px ;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
-#form__container > textarea{
-    padding: 8px;
-    border: none;
-    outline: none;
-    height: 100px;
-    margin-bottom: 15px;
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.489);
-    color: white;
-    font-family: 'Barlow', sans-serif;
-    border-radius: 8px;
-}
 #form__container input{
     height: 35px;
     border: none;
@@ -183,8 +209,8 @@ body.disable-scroll{
     border-radius: 8px;
     text-indent: 8px;
 }
-.submit{
-    cursor: pointer;
+body.disable-scroll{
+    overflow-y: hidden;
 }
 .content h2{
     color: white;

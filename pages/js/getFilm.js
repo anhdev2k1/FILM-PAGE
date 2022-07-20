@@ -14,8 +14,6 @@ document.addEventListener('click', e => {
         }else{
             toastr.error("Vui lòng đăng nhập")
         }
-        
-        
     }
     if(form.contains(e.target) || btnPost.contains(e.target)){
       return
@@ -59,33 +57,82 @@ async function getFilm(api){
 }
 
 getFilm('https://6289f509e5e5a9ad321f5d6e.mockapi.io/products')
+const infoUser = JSON.parse(localStorage.getItem('islogin')) || {}
+function handelPreviewInfo(){
+    const infoName = document.querySelector('.info__name')
+    const infoPass = document.querySelector('.info__pass')
+    infoName.setAttribute('value',infoUser.username)
+    infoPass.setAttribute('value',infoUser.password)
+    
+    const inputFile = document.querySelector('#input__file')
+    const imgPreview = document.querySelector('.info__img')
+    let newInfo = {}
+    inputFile.addEventListener('change',(e)=>{
+        const file = e.target.files[0]
+        let newKeyInfo = file.preview
+        newKeyInfo = URL.createObjectURL(file)
+        imgPreview.setAttribute('src',newKeyInfo)
+        newInfo = {...infoUser,newKeyInfo}
+        console.log(newInfo.newKeyInfo);
+        
+    })
+    imgPreview.setAttribute('src',newInfo.newKeyInfo)
+    const btnPreview = document.querySelector('.btn__preview')
+    btnPreview.addEventListener('click',()=>{
+        localStorage.setItem('newInfo',JSON.stringify(newInfo))
+        window.location.reload()
+    })
+}
+handelPreviewInfo()
+function handelUserClick(){
+const layerTrans = document.querySelector('.layer__form')
+const form = document.querySelector('#form__container')
+const user = document.querySelector('.user')
+    form.addEventListener('submit',(e)=>{
+        e.preventDefault()
+    })
+    document.addEventListener('click',(e)=>{
+        if(user.contains(e.target)){
+            layerTrans.classList.add('active');
+            document.querySelector('body').classList.add('disable-scroll')
+        }
+        if(form.contains(e.target) || user.contains(e.target)){
+          return
+        }
+        
+        layerTrans.classList.remove('active');
+        document.querySelector('body').classList.remove('disable-scroll')
+    })
 
+    
+}
 function createUser(){ // Tạo ra div user
     const signInHTML = document.querySelector('.sign__in')
     const logoutLink = document.querySelector('.sign__in--link')
+    const getIsLogin = JSON.parse(localStorage.getItem('newInfo')) || {}
+    if(getIsLogin.islogin){
+        const logOut = document.querySelector('.text-signin')
+        logOut.innerHTML = "Log out"
 
-if(getIsLogin.islogin){
-    const logOut = document.querySelector('.text-signin')
-    logOut.innerHTML = "Log out"
+        let userHTML = document.createElement('div')
+        userHTML.className = "user"
+        signInHTML.appendChild(userHTML)
 
-    let userHTML = document.createElement('div')
-    userHTML.className = "user"
-    signInHTML.appendChild(userHTML)
-    let iconUser = document.createElement('img')
-    iconUser.setAttribute('src','./access/images/user.png')
-    userHTML.appendChild(iconUser)
-    let nameUser = document.createElement('h3')
-    nameUser.className = "name__user"
-    userHTML.appendChild(nameUser)
+        let iconUser = document.createElement('img')
+        iconUser.setAttribute('src',getIsLogin.newKeyInfo)
+        userHTML.appendChild(iconUser)
 
-    nameUser.innerHTML = getIsLogin.username
-    
-}
+        let nameUser = document.createElement('h3')
+        nameUser.className = "name__user"
+        userHTML.appendChild(nameUser)
 
-logoutLink.addEventListener('click',(e)=>{
-    
-    localStorage.removeItem('islogin')
-})
+        nameUser.innerHTML = getIsLogin.username
+        handelUserClick()
+    }
+
+    logoutLink.addEventListener('click',(e)=>{
+        localStorage.removeItem('islogin')
+    })
 }
 createUser()
 

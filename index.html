@@ -14,6 +14,31 @@
  
 </head>
 <body>
+    <div class="layer__form">
+        
+        <form method="post" id="form__container">
+            <h2>HỒ SƠ</h2>
+            <div class="imgPreview">
+                <img src="./access/images/user.png" alt="" class="info__img">
+                <label for="input__file" class="preview">
+				    <i class="fas fa-cloud-upload-alt"></i>
+				    <span>Upload image</span>
+			    </label>
+			    <input type="file" hidden id="input__file"/>
+            </div>
+            <div class="info__user">
+                <div class="info__item">
+                    <span>Tên tài khoản</span>
+                    <input type="text" class="info__name" value="">
+                </div>
+                <div class="info__item">
+                    <span>Mật khẩu</span>
+                    <input type="text" class="info__pass" value="">
+                </div>
+            </div>
+            <button class="btn__preview">Lưu thay đổi</button>
+        </form> 
+    </div>
     <div class="container">
         <div class="side__bar">
             <a href="./index.html" class="logo">Movie Film</a>

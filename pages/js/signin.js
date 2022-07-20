@@ -77,7 +77,8 @@ function login(){
     let users = JSON.parse(localStorage.getItem('users'))
     let isLogin = {
         islogin : true,
-        username : username
+        username,
+        password : password
     }
     if(username == "" || password == ""){
         toastr.error("Đăng nhập thất bại , vui lòng kiểm trai lại !!")
