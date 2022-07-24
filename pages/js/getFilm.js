@@ -1,27 +1,4 @@
-
-const btnPost = document.querySelector('.post')
-const layerTrans = document.querySelector('.layer__form')
-const form = document.querySelector('#form__container')
-const btnSubmit = document.querySelector('.submit')
-
-let getIsLogin = JSON.parse(localStorage.getItem('islogin'))
-document.addEventListener('click', e => {
-    
-    if(btnPost.contains(e.target)){
-        if(getIsLogin){
-            layerTrans.classList.add('active');
-            document.querySelector('body').classList.add('disable-scroll')
-        }else{
-            toastr.error("Vui lòng đăng nhập")
-        }
-    }
-    if(form.contains(e.target) || btnPost.contains(e.target)){
-      return
-    }
-    
-    layerTrans.classList.remove('active');
-    document.querySelector('body').classList.remove('disable-scroll')
-})
+import {changePassword,showInfoUserPreview} from '../../access/src/js/main.js'
 
 
 
@@ -57,33 +34,10 @@ async function getFilm(api){
 }
 
 getFilm('https://6289f509e5e5a9ad321f5d6e.mockapi.io/products')
-const infoUser = JSON.parse(localStorage.getItem('islogin')) || {}
-// function handelPreviewInfo(){
-//     const infoName = document.querySelector('.info__name')
-//     const infoPass = document.querySelector('.info__pass')
-//     infoName.setAttribute('value',infoUser.username)
-//     infoPass.setAttribute('value',infoUser.password)
-    
-//     const inputFile = document.querySelector('#input__file')
-//     const imgPreview = document.querySelector('.info__img')
-//     let newInfo = {}
-//     inputFile.addEventListener('change',(e)=>{
-//         const file = e.target.files[0]
-//         let newKeyInfo = file.preview
-//         newKeyInfo = URL.createObjectURL(file)
-//         imgPreview.setAttribute('src',newKeyInfo)
-//         newInfo = {...infoUser,newKeyInfo}
-//         console.log(newInfo.newKeyInfo);
-        
-//     })
-//     const btnPreview = document.querySelector('.btn__preview')
-//     btnPreview.addEventListener('click',()=>{
-//         localStorage.setItem('newInfo',JSON.stringify(newInfo))
-//         window.location.reload()
-//     })
-// }
-// handelPreviewInfo()
-function handelUserClick(){
+
+
+/// SHOW HIDE POST BÀI
+function togglePost(){
 const layerTrans = document.querySelector('.layer__form')
 const form = document.querySelector('#form__container')
 const btnPost = document.querySelector('.post')
@@ -92,7 +46,7 @@ let getIsLogin = JSON.parse(localStorage.getItem('islogin'))
         if(btnPost.contains(e.target)){
               if(getIsLogin){
                   layerTrans.classList.add('active');
-                  document.querySelector('body').classList.add('disable-scroll')
+                  document.querySelector('body').classList.add('none-scroll')
               }else{
                   toastr.error("Vui lòng đăng nhập")
               }
@@ -102,15 +56,42 @@ let getIsLogin = JSON.parse(localStorage.getItem('islogin'))
           }
         
         layerTrans.classList.remove('active');
-        document.querySelector('body').classList.remove('disable-scroll')
+        document.querySelector('body').classList.remove('none-scroll')
     })
 
 }
-handelUserClick()
+togglePost()
+
+// SHOW HIDE CHỈNH SỬA THÔNG TIN USER
+function toggleUserPreview(){
+    const layerTrans = document.querySelector('.layer__form-user')
+    const form = document.querySelector('#form__container-user')
+    const user = document.querySelector('.user')
+    form.addEventListener('submit',(e)=>{
+        e.preventDefault()
+    })
+        document.addEventListener('click',(e)=>{
+            
+            if(user.contains(e.target)){
+                layerTrans.classList.add('active');
+                document.querySelector('body').classList.add('disable-scroll')
+                  
+              }
+              if(form.contains(e.target) || user.contains(e.target)){
+                return
+              }
+            
+            layerTrans.classList.remove('active');
+            document.querySelector('body').classList.remove('disable-scroll')
+        })
+    
+}
+
+// TẠO NÚT THÔNG TIN USER
 function createUser(){ // Tạo ra div user
     const signInHTML = document.querySelector('.sign__in')
     const logoutLink = document.querySelector('.sign__in--link')
-    const getIsLogin = JSON.parse(localStorage.getItem('newInfo')) || {}
+    const getIsLogin = JSON.parse(localStorage.getItem('islogin')) || {}
     if(getIsLogin.islogin){
         const logOut = document.querySelector('.text-signin')
         logOut.innerHTML = "Log out"
@@ -120,7 +101,7 @@ function createUser(){ // Tạo ra div user
         signInHTML.appendChild(userHTML)
 
         let iconUser = document.createElement('img')
-        iconUser.setAttribute('src',getIsLogin.newKeyInfo)
+        iconUser.setAttribute('src','./access/images/user.png')
         userHTML.appendChild(iconUser)
 
         let nameUser = document.createElement('h3')
@@ -128,6 +109,7 @@ function createUser(){ // Tạo ra div user
         userHTML.appendChild(nameUser)
 
         nameUser.innerHTML = getIsLogin.username
+        toggleUserPreview()
         
     }
 
@@ -191,11 +173,13 @@ function handelClickLike(){
             btn.classList.toggle('active')
             if(btn.classList.contains("active")){
                 toastr.success("Đã thích bài viết !")
-            }else{
-                toastr.success("Không thích bài viết này nữa !")
             }
         })
     })
 }
+
+
+changePassword()
+showInfoUserPreview()
 
 

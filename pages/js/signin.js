@@ -78,7 +78,7 @@ function login(){
     let isLogin = {
         islogin : true,
         username,
-        password : password
+        password,
     }
     if(username == "" || password == ""){
         toastr.error("Đăng nhập thất bại , vui lòng kiểm trai lại !!")
@@ -86,13 +86,17 @@ function login(){
     }else{
         let currentUser = users.find( user => user.username == username )
         
-        if(currentUser || username == admin.username){
-            if(currentUser?.password == password ){
+        if(currentUser){
+            if(currentUser.password == password ){
                 toastr.success("Đăng nhập thành công")
                 localStorage.setItem('islogin',JSON.stringify(isLogin))
                 setTimeout(nextPageHome,1000)
             }
-            else if(admin.password === password){
+            else{
+                toastr.error("Không đúng mật khẩu")
+            }
+        }else if(username == admin.username){
+            if(admin.password === password){
                 toastr.success("Đăng nhập admin thành công")
                 setTimeout(nextAdmin,1000)
             }
@@ -108,5 +112,9 @@ function login(){
 }
 function nextAdmin(){
     window.location.href = "./admin.html"
+}
+
+object.history = {
+    
 }
 

@@ -33,7 +33,6 @@ function checkIsLogin(){
     const signInHTML = document.querySelector('.sign__in')
     const logoutLink = document.querySelector('.sign__in--link')
     const getIsLogin = JSON.parse(localStorage.getItem('islogin')) || {}
-    const infoUser = JSON.parse(localStorage.getItem('newInfo')) || {}
     if(getIsLogin.islogin){
         const logOut = document.querySelector('.text-signin')
         logOut.innerHTML = "Log out"
@@ -43,7 +42,7 @@ function checkIsLogin(){
         signInHTML.appendChild(userHTML)
 
         let iconUser = document.createElement('img')
-        iconUser.setAttribute('src',infoUser.newKeyInfo || './access/images/user.png')
+        iconUser.setAttribute('src','./access/images/user.png')
         userHTML.appendChild(iconUser)
 
         let nameUser = document.createElement('h3')
@@ -51,47 +50,73 @@ function checkIsLogin(){
         userHTML.appendChild(nameUser)
 
         nameUser.innerHTML = getIsLogin.username
-        handelUserClick()
+        toggleFormChangeUser()
     }
 
     logoutLink.addEventListener('click',(e)=>{
         localStorage.removeItem('islogin')
     })
-
+   
 }
 checkIsLogin()
 
-const userHTML = document.querySelector('.user')
-const userImage = userHTML.querySelector('img')
-function handelPreviewInfo(){
-    const getIsLogin = JSON.parse(localStorage.getItem('islogin')) || {}
-    const infoUser = JSON.parse(localStorage.getItem('newInfo')) || {}
-    const infoName = document.querySelector('.info__name')
-    const infoPass = document.querySelector('.info__pass')
-    infoName.setAttribute('value',getIsLogin.username)
-    infoPass.setAttribute('value',getIsLogin.password)
 
-    const inputFile = document.querySelector('#input__file')
-    const imgPreview = document.querySelector('.info__img')
-    let newInfo = {}
-    inputFile.addEventListener('change',(e)=>{
-        const file = e.target.files[0]
-        let newKeyInfo = file.preview
-        newKeyInfo = URL.createObjectURL(file)
-        imgPreview.setAttribute('src',newKeyInfo)
-        newInfo = {...getIsLogin,newKeyInfo}
+function showInfoUserPreview(){
+    const users = JSON.parse(localStorage.getItem('users'))
+    const nameUser = document.querySelector('.name__user').innerHTML
+    const infoName = document.querySelector('.info__name')
+    const infoEmail = document.querySelector('.info__email')
+    const getInfoUser = users.filter(user => {
+        return user.username ===nameUser
     })
     
-    const btnPreview = document.querySelector('.btn__preview')
-    btnPreview.addEventListener('click',()=>{
-        localStorage.setItem('newInfo',JSON.stringify(newInfo))
-        // window.location.reload()
-        userImage.setAttribute('src',newInfo.newKeyInfo)
-    })
+    infoName.setAttribute('value',getInfoUser[0].username)
+    infoEmail.setAttribute('value',getInfoUser[0].email)
     
 }
-handelPreviewInfo()
-function handelUserClick(){
+showInfoUserPreview()
+
+
+//------------------CHANGE PASSWORD--------------------------
+
+function changePassword(){
+    const inputPass = document.querySelector('.info__pass')
+    const inputUsername = document.querySelector('.info__name').value
+    const btnPreview = document.querySelector('.btn__preview')
+    const users = JSON.parse(localStorage.getItem('users'))
+    
+    let newPassPreview
+    inputPass.addEventListener('change',(e)=>{
+        newPassPreview = e.target.value
+        if(e.target.value !== "") {
+            btnPreview.style.background = "#0D90F3"
+            btnPreview.disabled = false
+        }else {
+            btnPreview.style.background = "#595A5E"
+            btnPreview.disabled = true
+        }
+    })
+    
+    btnPreview.addEventListener('click',()=>{
+        
+        let newUsers = users.filter(user =>{
+            return user.username === inputUsername ? user.password = newPassPreview : inputPass.value
+        })
+        localStorage.setItem('users',JSON.stringify(newUsers))
+        inputPass.setAttribute('value',newPassPreview)
+        
+        toastr.success('Bạn đã thay đổi thông tin thành công !!')
+        setTimeout(()=>{
+            window.location.reload()
+        },1000)
+    })
+}
+changePassword()
+
+
+
+//------------------END CHANGE PASSWORD--------------------------
+function toggleFormChangeUser(){
 const layerTrans = document.querySelector('.layer__form')
 const form = document.querySelector('#form__container')
 const user = document.querySelector('.user')
@@ -189,4 +214,5 @@ async function getSlidesTrending(){
 getSlidesTrending()
 
 
+export {showInfoUserPreview,changePassword,toggleFormChangeUser}
 

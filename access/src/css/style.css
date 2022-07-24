@@ -227,11 +227,15 @@ img{
     background: rgba(51, 51, 51, 0.782);
     z-index: 9999;
     text-align: center;
-    display: none;
+    visibility: hidden;
     color: white;
+    
 }
 .layer__form.active{
-    display: block;
+    visibility: visible;
+}
+.info__user{
+    padding: 0 50px;
 }
 .imgPreview{
     min-width: 200px;
@@ -254,9 +258,13 @@ img{
     cursor: pointer;
     margin-top: 15px;
 }
+.info__item{
+    text-align: left;
+    display: flex;
+}
 .info__item span{
     font-size: 1.5rem;
-    margin-right: 10px;
+    margin-right: auto;
 }
 .btn__preview{
     width: max-content;
@@ -264,7 +272,7 @@ img{
     margin: 0 auto;
     border: none;
     cursor: pointer;
-    background-color: var(--color-active);
+    /* background-color: var(--color-active); */
     color: white;
 }
 #form__container{
@@ -279,19 +287,10 @@ img{
     border-radius:8px ;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
-#form__container > textarea{
-    padding: 8px;
-    border: none;
-    outline: none;
-    height: 100px;
-    margin-bottom: 15px;
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.489);
-    color: white;
-    font-family: 'Barlow', sans-serif;
-    border-radius: 8px;
-}
+
+
 #form__container input{
+    width: max-content;
     height: 35px;
     border: none;
     outline: none;
@@ -301,12 +300,20 @@ img{
     border: 1px solid rgba(255, 255, 255, 0.489);
     color: white;
     border-radius: 8px;
-    text-indent: 8px;
+    /* text-indent: 8px; */
+    padding: 8px;
 }
-.submit{
-    cursor: pointer;
-}
+
+
 body.disable-scroll{
     overflow-y: hidden;
+}
+.toast-error{
+    background-color: red !important;
+    font-size: 1.5rem;
+}
+.toast-success{
+    background-color: rgb(13, 170, 13) !important;
+    font-size: 1.5rem;
 }
 

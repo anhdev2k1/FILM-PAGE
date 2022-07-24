@@ -11,6 +11,8 @@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
  
 </head>
 <body>
@@ -20,23 +22,26 @@
             <h2>HỒ SƠ</h2>
             <div class="imgPreview">
                 <img src="./access/images/user.png" alt="" class="info__img">
-                <label for="input__file" class="preview">
-				    <i class="fas fa-cloud-upload-alt"></i>
-				    <span>Upload image</span>
-			    </label>
-			    <input type="file" hidden id="input__file"/>
             </div>
             <div class="info__user">
                 <div class="info__item">
-                    <span>Tên tài khoản</span>
-                    <input type="text" class="info__name" value="">
+                    <span>Tên tài khoản :</span>
+                    <input type="text" class="info__name" value="" disabled>
                 </div>
                 <div class="info__item">
-                    <span>Mật khẩu</span>
-                    <input type="text" class="info__pass" value="">
+                    <span>Email :</span>
+                    <input type="text" class="info__email" value="" disabled>
+                </div>
+                <div class="info__item edit__pass">
+                    <span> Thay đổi mật khẩu :</span>
+                    <div>
+                        <input type="password" class="info__pass" value="" >
+                    </div>
+                    
+                    
                 </div>
             </div>
-            <button class="btn__preview">Lưu thay đổi</button>
+            <button class="btn__preview" disabled>Lưu thay đổi</button>
         </form> 
     </div>
     <div class="container">
@@ -119,7 +124,7 @@
     
 
     
-    <script src="./access/src/js/main.js"></script>
+    <script type="module" src="./access/src/js/main.js"></script>
     <script src="./pages/js/search.js"></script>
 </body>
 </html>
