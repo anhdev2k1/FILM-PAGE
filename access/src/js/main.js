@@ -63,7 +63,7 @@ checkIsLogin()
 
 function showInfoUserPreview(){
     const users = JSON.parse(localStorage.getItem('users'))
-    const nameUser = document.querySelector('.name__user').innerHTML
+    const nameUser = document.querySelector('.name__user').innerHTML || ""
     const infoName = document.querySelector('.info__name')
     const infoEmail = document.querySelector('.info__email')
     const getInfoUser = users.filter(user => {

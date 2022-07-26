@@ -316,7 +316,22 @@ body.none-scroll{
     width: 500px;
     height: 200px;
 }
-.btn-like{
+.empty{
+    width: 200px;
+    margin: 0 auto;
+}
+.empty img{
+    width: 100%;
+}
+.btns{
+    width: max-content;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.btn-item{
     width: 50px;
     height: 50px;
     background-color: #27282E;
@@ -325,13 +340,10 @@ body.none-scroll{
     line-height: 50px;
     font-size: 2rem;
     color: white;
-    position: absolute;
-    top: 50%;
-    right: -60px;
-    transform: translateY(-50%);
+   
     cursor: pointer;
+    margin-bottom: 20px;
 }
-
 .btn-like.active{
     background-color: red;
 }
@@ -355,3 +367,33 @@ body.none-scroll{
     background-color: rgb(13, 170, 13) !important;
     font-size: 1.5rem;
 }
+
+/*---------TAB POST------*/
+.tab {
+    overflow: hidden;
+    background-color: transparent;
+    width: max-content;
+    height: max-content;
+    margin: 0 auto;
+    margin-top: 50px;
+    border: 1px solid #333;
+}
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+    color: white;
+}
+.tab button:hover {
+    background-color: var(--color-active);
+  }
+  
+  /* Create an active/current tablink class */
+  .tab button.active {
+    background-color: var(--color-active);
+  }

@@ -95,7 +95,8 @@ const getUsers = JSON.parse(localStorage.getItem('users'))
 const listUserHTML = document.querySelector('.list__user')
 function showUser(dataUser){
   if(dataUser.length == 0){
-    return listUserHTML.innerHTML = "<div style='text-align : center; margin-top: 50px'>No user !!</div>"
+    return listUserHTML.innerHTML = 
+      "<div style='text-align : center; margin-top: 50px'><img src='./access/images/empty.png'><h4 style='margin-top:50px'>Không có kết quả tìm kiếm phù hợp với yêu cầu của bạn.</h4></div>"
   }
   let htmls = dataUser.map(user =>{
       return `

@@ -70,7 +70,7 @@
                     <i class="fa-solid fa-display"></i>
                     <span>Explore</span>
                 </a>
-                <a href="#" class="sidebar__item">
+                <a href="./history.html" class="sidebar__item">
                     <i class="fa-solid fa-clock-rotate-left"></i>
                     <span>History</span>
                 </a>
@@ -91,11 +91,35 @@
                 <span>Bạn đang nghĩ gì ?</span>
             </div>
 
-            <div class="content">
+            <div class="tab">
+                <button class="tablinks active" onclick="openPost(event, 'allPost')">Mọi người</button>
+                <button class="tablinks" onclick="openPost(event, 'myPost')">Của tôi</button>
                 
+              </div>
+              
+            <div class="content tabcontent" id="allPost">
+                
+            </div>
+
+            <div id="myPost" class="content tabcontent" style="display: none;">
             </div>
         </div>
     </div>
     <script type="module" src="./pages/js/getFilm.js"></script>
+    <script>
+        function openPost(evt, catePost) {
+            let i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(catePost).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
 </body>
 </html>
